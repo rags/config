@@ -1,0 +1,25 @@
+#aliases
+alias syn="synergys --config ~/.synergy.conf --name main --daemon"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias clj='java -cp ~/projects/clojure/clojure-1.0.0.jar:/usr/share/java/jline.jar jline.ConsoleRunner clojure.main'
+alias notes='env WINEPREFIX="/home/rags/.wine" wine "C:\Program Files\lotus\notes\notes.exe" "=C:\Program Files\lotus\notes\notes.ini" &'
+alias rsa='env WINEPREFIX="/home/rags/.wine" wine "C:\Program Files\RSA SecurID Token for Windows\SecurID.exe" &'
+alias c="cd ~/projects/cruise"
+alias cm="c; cd manual-testing/ant_hg"
+alias ct="c; cd target/cruise-server*"
+alias cal="c; tail -F target/cruise-agent-1.3.2/cruise-agent.log"
+alias csl="c; tail -F target/cruise-server-1.3.2/cruise-server.log"
+alias ak='awk "{print \$2 }" | xargs kill -9'
+alias killjava='ps aux | grep jar | grep -v "\(intellij\|Twist\|grep\)" | ak'
+alias g='grep -i'
+alias p='ps wwaux | g'
+alias b='`hg root`/tools/jruby/bin/jruby -S buildr'
+alias ss_single='RAILS_ENV=test b cruise:rails:spec_server test=no'
+alias idea='/home/rags/software/idea/bin/idea.sh &'
+alias ss='for (( ; ; )) do ss_single; done'
+alias suemacs="emacs /sudo::\`pwd\`/\$1"
+alias cls='xset dpms force off'
+alias standby='xset dpms force standby'
+alias cq='cd ~/projects/cruise_qa'
+alias twist_server='cq && b copy_server && cts'
