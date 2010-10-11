@@ -1,4 +1,5 @@
 # Lines configured by zsh-newuser-install
+source ~/.myfunc
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -7,7 +8,9 @@ unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/rags/.zshrc'
+
+zstyle ':completion:*' group-name ''
+zstyle :compinstall filename '/cygdrive/c/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -24,10 +27,10 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
     eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 done
 PR_NO_COLOUR="%{$terminfo[sgr0]%}"
- 
+
 # define the prompt
 PROMPT='\
-$PR_YELLOW%~
+$PR_RED%~ $PR_YELLOW$(parse_git_branch)
 %(?..$PR_RED(%?%))$PR_LIGHT_CYAN>$PR_NO_COLOUR '
  
 PS2='$PR_BLUE%_$PR_WHITE>$PR_NO_COLOUR '
