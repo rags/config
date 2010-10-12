@@ -10,7 +10,9 @@ bindkey -e
 # The following lines were added by compinstall
 
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select
 zstyle :compinstall filename '/cygdrive/c/.zshrc'
+
 
 autoload -Uz compinit
 compinit
