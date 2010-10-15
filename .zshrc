@@ -11,6 +11,7 @@ bindkey -e
 
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '/cygdrive/c/.zshrc'
 
 
@@ -37,6 +38,11 @@ $PR_RED%~ $PR_YELLOW$(parse_git_branch)
  
 PS2='$PR_BLUE%_$PR_WHITE>$PR_NO_COLOUR '
  
+#bindkey
+bindkey "^W" kill-region
+bindkey "^[^W" backward-kill-line
+
+
 # vim:ft=zsh
 
 source ~/.aliases
