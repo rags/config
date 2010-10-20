@@ -16,3 +16,5 @@
    pretty = format:"%h %C(yellow)%ci%Creset %Cgreen%an%Creset | %s"
 [push]
    default = tracking
+[core]
+	autocrlf = false
