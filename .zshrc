@@ -46,4 +46,8 @@ bindkey "^[^W" backward-kill-line
 
 # vim:ft=zsh
 
+if [ -f ~/.projectrc ]; then
+    source ~/.projectrc
+fi
+
 source ~/.aliases
