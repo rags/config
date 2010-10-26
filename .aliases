@@ -10,3 +10,4 @@ alias b='./b'
 alias suemacs="emacs /sudo::\`pwd\`/\$1"
 alias cls='xset dpms force off'
 alias standby='xset dpms force standby'
+alias dh='dirs -v'

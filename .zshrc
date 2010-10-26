@@ -3,9 +3,10 @@ source ~/.myfunc
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-DIRSTACKSIZE=8
+DIRSTACKSIZE=10
 setopt autocd
 setopt HISTIGNOREDUPS 
+setopt autopushd
 unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
