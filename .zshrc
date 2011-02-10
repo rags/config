@@ -51,4 +51,11 @@ if [ -f ~/.projectrc ]; then
     source ~/.projectrc
 fi
 
+if [ -d ~/functions ]; then
+    fpath=(~/functions $fpath)
+fi
+
+export WWW_BROWSER=" ~/Users/rramakri/AppData/Local/Google/Chrome/Application/chrome.exe %s"
+export RUBYOPT=rubygems
+
 source ~/.aliases
