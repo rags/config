@@ -1,4 +1,4 @@
-# Lines configured by zsh-newuser-install
+# Lines configured by zsh-newuser-install 
 source ~/.myfunc
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -15,7 +15,7 @@ bindkey -e
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle :compinstall filename '/cygdrive/c/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 
 autoload -Uz compinit
@@ -55,7 +55,6 @@ if [ -d ~/functions ]; then
     fpath=(~/functions $fpath)
 fi
 
-export WWW_BROWSER=" ~/Users/rramakri/AppData/Local/Google/Chrome/Application/chrome.exe %s"
 export RUBYOPT=rubygems
 
 source ~/.aliases
