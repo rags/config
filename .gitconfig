@@ -20,6 +20,7 @@
    default = tracking
 [core]
 	autocrlf = false
+	excludesfile = ~/.gitignore
 [receive]
 	denyCurrentBranch = false
 [user]
