@@ -26,3 +26,5 @@
 [user]
 	name = Raghunandan Ramakrishna Rao
 	email = rags@thoughtworks.com
+[branch]
+	autosetuprebase = always
