@@ -5,7 +5,7 @@
    br = branch
    sr = svn rebase
    sd = svn dcommit
-   rhh = reset --hard head
+   rhh = reset --hard HEAD
    pers = push -f ssh://tam@regressioncruise.tw.testttl.com//repos/rags-laptop HEAD:master
    personal = push -f ssh://tam@regressioncruise.tw.testttl.com//repos/rags-laptop HEAD:master
 [color]
