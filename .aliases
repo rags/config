@@ -1,7 +1,5 @@
 #aliases
 alias syn="synergys --config ~/.synergy.conf --name main --daemon"
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 alias ak='awk "{print \$2 }" | xargs kill -9'
 alias killjava='ps aux | grep jar | grep -v "\(intellij\|Twist\|grep\)" | ak'
 alias g='git'
