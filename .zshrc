@@ -3,7 +3,7 @@
 ######oh my zsh config######
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(git pip brew osx python)
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 ######oh my zsh config######
@@ -63,6 +63,10 @@ fi
 if [ -d ~/functions ]; then
     fpath=(~/functions $fpath)
 fi
+
+#if [[ -e "`which tmux`" ]]; then
+#  [ $TERM != "screen" ] && tmux
+#fi
 
 export RUBYOPT=rubygems
 

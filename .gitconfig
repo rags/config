@@ -6,8 +6,10 @@
    sr = svn rebase
    sd = svn dcommit
    rhh = reset --hard HEAD
-   pers = push -f ssh://tam@regressioncruise.tw.testttl.com//repos/rags-laptop HEAD:master
-   personal = push -f ssh://tam@regressioncruise.tw.testttl.com//repos/rags-laptop HEAD:master
+   amend = commit --amend -aC HEAD
+   show-files = show --name-only
+   pull = pull --log
+   
 [color]
    ui = auto
 [color "status"]
@@ -25,6 +27,6 @@
 	denyCurrentBranch = false
 [user]
 	name = Raghunandan Ramakrishna Rao
-	email = rags@thoughtworks.com
+	email = raghu@b-eagles.com
 [branch]
 	autosetuprebase = always
