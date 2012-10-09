@@ -7,8 +7,9 @@
    sd = svn dcommit
    rhh = reset --hard HEAD
    amend = commit --amend -aC HEAD
-   show-files = show --name-only
+   show-files = show --name-status
    pull = pull --log
+   cont = rebase --continue
    
 [color]
    ui = auto
