@@ -56,9 +56,6 @@ bindkey "^[^W" backward-kill-line
 
 # vim:ft=zsh
 
-if [ -f ~/.projectrc ]; then
-    source ~/.projectrc
-fi
 
 if [ -d ~/functions ]; then
     fpath=(~/functions $fpath)
@@ -71,3 +68,7 @@ fi
 export RUBYOPT=rubygems
 
 source ~/.aliases
+
+if [ -f ~/.projectrc ]; then #overrides go here. this should be the last statement
+    source ~/.projectrc
+fi
