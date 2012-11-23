@@ -10,6 +10,8 @@
    show-files = show --name-status
    pull = pull --log
    cont = rebase --continue
+   l3 = log -3
+   l5 = log -5
    
 [color]
    ui = auto
