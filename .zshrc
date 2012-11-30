@@ -28,6 +28,7 @@ zstyle :compinstall filename '~/.zshrc'
 
 
 autoload -Uz compinit
+autoload -U zargs
 compinit
 # End of lines added by compinstall
 setopt prompt_subst
