@@ -12,6 +12,7 @@
    cont = rebase --continue
    l3 = log -3
    l5 = log -5
+   aa = add -A
    
 [color]
    ui = auto
@@ -30,6 +31,6 @@
 	denyCurrentBranch = false
 [user]
 	name = Raghunandan Ramakrishna Rao
-	email = raghu@b-eagles.com
+	email = r.raghunandan@gmail.com
 [branch]
 	autosetuprebase = always
