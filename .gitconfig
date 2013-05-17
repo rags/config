@@ -12,6 +12,7 @@
    cont = rebase --continue
    l3 = log -3
    l5 = log -5
+   l10 = log -10
    aa = add -A
    
 [color]

@@ -3,7 +3,8 @@
 ######oh my zsh config######
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git pip brew osx python)
+plugins=(git pip brew osx python zsh-syntax-highlighting)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root) 
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 ######oh my zsh config######
