@@ -1,0 +1,1 @@
+for file in .*; do ln -sf `pwd`/$file ~/$file; done
