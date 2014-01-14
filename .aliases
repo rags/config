@@ -2,7 +2,7 @@
 alias syn="synergys --config ~/.synergy.conf --name main --daemon"
 alias ak='awk "{print \$2 }" | xargs kill -9'
 alias killjava='ps aux | grep jar | grep -v "\(intellij\|Twist\|grep\)" | ak'
-alias g='git'
+alias g='PAGER=more git'
 alias p='ps wwaux | g'
 alias suemacs="emacs /sudo::\`pwd\`/\$1"
 alias cls='xset dpms force off'
@@ -17,7 +17,7 @@ alias e='em -t'
 alias et='e -e "(client-initialization (selected-frame))"'
 alias ew='em -n'
 alias kill-emacsd='et -e "(kill-emacs)"'
-alias gl='g fetch && g log --name-status ..remotes/origin/master && g rebase'
+alias gl='g fetch && g log --name-status ..remotes/origin/`git br | grep ^\*| sed "s/\*\s*//"` && g rebase'
 alias glp='gl && gp'
 alias gcont='g add -A && g cont'
 alias py='nohup ipython notebook --pylab inline &'

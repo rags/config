@@ -1,7 +1,25 @@
 parse_git_branch() {
-git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 browse(){
- eval "$WWW_BROWSER '$1'"
+    eval "$WWW_BROWSER '$1'"
+}
+
+gclp(){
+    prn "Adding all files"
+    g aa
+    prn "Commiting with message '$1'"
+    g ci -am "$1"
+    prn "Pulling new changes from remote"
+    gl 
+    prn 'Pushing to remote' 
+    gp
+}
+
+RED="\e[00;31m"
+NO_COLOR="\e[00m"
+
+prn(){
+    echo ${RED}$@${NO_COLOR}
 }
