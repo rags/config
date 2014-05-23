@@ -23,3 +23,5 @@ NO_COLOR="\e[00m"
 prn(){
     echo ${RED}$@${NO_COLOR}
 }
+
+calc(){python -c "print($@)"}
