@@ -1,0 +1,11 @@
+udp://tracker.openbittorrent.com:80
+udp://tracker.publicbt.com:80
+udp://tracker.istole.it:80
+udp://tracker.yify-torrents.com:80/announce
+http://announce.torrentsmd.com:6969/announce
+udp://pow7.com:80/announce
+udp://open.demonii.com:1337/announce
+udp://exodus.desync.com:6969/announce
+udp://bt.rghost.net:80/announce
+udp://10.rarbg.me:80/announce
+udp://11.rarbg.me:80/announce

@@ -12,7 +12,7 @@ gclp(){
     prn "Commiting with message '$1'"
     g ci -am "$1"
     prn "Pulling new changes from remote"
-    gl 
+    git pull --rebase
     prn 'Pushing to remote' 
     gp
 }
