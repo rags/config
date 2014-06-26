@@ -44,6 +44,7 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
     eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 done
 PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+PR_NO_COLOUR="%{$reset_color%}"
 
 # define the prompt
 PROMPT='\
