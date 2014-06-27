@@ -14,6 +14,7 @@
    l5 = log -5
    l10 = log -10
    aa = add -A
+   dag = log --graph  --date-order
    
 [color]
    ui = auto
@@ -28,6 +29,7 @@
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore
+	pager = less -FMRiX
 [receive]
 	denyCurrentBranch = false
 [user]
