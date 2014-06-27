@@ -18,6 +18,8 @@ setopt autocd
 setopt HISTIGNOREDUPS 
 setopt autopushd
 unsetopt beep
+unsetopt correct
+unsetopt correct_all
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall

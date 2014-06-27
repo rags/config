@@ -37,3 +37,5 @@
 	email = r.raghunandan@gmail.com
 [branch]
 	autosetuprebase = always
+[amazon]
+	append-cr-url = true
