@@ -15,7 +15,7 @@
    l10 = log -10
    aa = add -A
    dag = log --graph  --date-order
-   
+   clone = clone --recursive   
 [color]
    ui = auto
 [color "status"]
