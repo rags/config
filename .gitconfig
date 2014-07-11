@@ -30,11 +30,12 @@
 	autocrlf = false
 	excludesfile = ~/.gitignore
 	pager = less -FMRiX
+	editor = emacsclient -t
 [receive]
 	denyCurrentBranch = false
 [user]
 	name = Raghunandan Ramakrishna Rao
-	email = r.raghunandan@gmail.com
+	email = raghunr@amazon.com
 [branch]
 	autosetuprebase = always
 [amazon]

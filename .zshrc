@@ -70,10 +70,10 @@ fi
 #fi
 
 export RUBYOPT=rubygems
-
+export EDITOR='emacsclient -t'
 source ~/.aliases
 
 if [ -f ~/.projectrc ]; then #overrides go here. this should be the last statement
     source ~/.projectrc
 fi
-tmux
+#tmux
