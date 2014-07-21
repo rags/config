@@ -2,7 +2,7 @@
 
 ######oh my zsh config######
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 plugins=(git pip brew osx python zsh-syntax-highlighting)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root) 
 DISABLE_AUTO_UPDATE="true"
@@ -47,9 +47,16 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOUR="%{$reset_color%}"
 
+
+if [[ -z "$SSH_CLIENT" ]]; then
+        prompt_host=""
+else
+        prompt_host=%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$(hostname -s):
+fi
+
 # define the prompt
 PROMPT='\
-$PR_RED%~ $PR_YELLOW$(parse_git_branch)
+${prompt_host}$PR_RED%~ $PR_YELLOW$(parse_git_branch)
 %(?..$PR_RED(%?%))$PR_LIGHT_CYAN>$PR_NO_COLOUR '
  
 PS2='$PR_BLUE%_$PR_WHITE>$PR_NO_COLOUR '

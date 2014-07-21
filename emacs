@@ -6,11 +6,11 @@ quot='"'
 [ -e "$emacs" ] || exit 0
 
 do_start(){
-   su - rags -c "$ssd -S -q  -x $emacs -- --daemon"
+   su - raghunr -c "$ssd -S -q  -x $emacs -- --daemon"
 }
 
 do_stop(){
-   su - rags -c "$emacsc -e ${quot}(progn (save-some-buffers t) (desktop-release-lock) (setq kill-emacs-hook 'nil) (kill-emacs t))${quot}"
+   su - raghunr -c "$emacsc -e ${quot}(progn (save-some-buffers t) (desktop-release-lock) (setq kill-emacs-hook 'nil) (kill-emacs t))${quot}"
    pkill emacs
    
 }
