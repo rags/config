@@ -27,3 +27,4 @@ alias start.mysql='(cd /usr/local/mysql && sudo ./bin/mysqld_safe)'
 alias stop.mysql='mysqladmin -u root -p shutdown'
 alias pp='sudo powerpill'
 alias open=xdg-open
+alias cat=less

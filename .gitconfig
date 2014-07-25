@@ -15,6 +15,7 @@
    l10 = log -10
    aa = add -A
    dag = log --graph  --date-order
+   lf = log --graph  --date-order --pretty=full
    clone = clone --recursive   
 [color]
    ui = auto
