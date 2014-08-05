@@ -28,3 +28,4 @@ alias stop.mysql='mysqladmin -u root -p shutdown'
 alias pp='sudo powerpill'
 alias open=xdg-open
 alias cat=less
+alias ....='../../..'
