@@ -1,22 +1,31 @@
 [alias]
    co = checkout
    ci = commit
-   st = status
-   br = branch
+   st = status 
+   ss = status -s
+   b = branch
    sr = svn rebase
    sd = svn dcommit
+   r = reset
+   rh = reset --hard
    rhh = reset --hard HEAD
-   amend = commit --amend -aC HEAD
+   amend = !git au && git commit --amend -aC HEAD
    show-files = show --name-status
    pull = pull --log
-   cont = rebase --continue
+   cont = !git au && git rebase --continue
    l3 = log -3
    l5 = log -5
    l10 = log -10
-   aa = add -A
+   ls = log --name-status
+   ls3 = log --name-status -3
+   ls5 = log --name-status -5
+   a   = add
+   aa = a -A
+   au = add -u
    dag = log --graph  --date-order
    lf = log --graph  --date-order --pretty=full
    clone = clone --recursive   
+   d = diff
 [color]
    ui = auto
 [color "status"]
