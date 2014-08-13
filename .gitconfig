@@ -20,7 +20,7 @@
    ls3 = log --name-status -3
    ls5 = log --name-status -5
    a   = add
-   aa = a -A
+   aa = add -A
    au = add -u
    dag = log --graph  --date-order
    lf = log --graph  --date-order --pretty=full
