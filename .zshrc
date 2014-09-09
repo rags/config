@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install 
 
 ######oh my zsh config######
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.zsh/oh-my-zsh
 #ZSH_THEME="robbyrussell"
 plugins=(git pip brew osx python zsh-syntax-highlighting)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root) 
@@ -9,7 +9,8 @@ DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 ######oh my zsh config######
 
-source ~/.myfunc
+source ~/.zsh/myfunc
+source ~/.zsh/git-prompt/zshrc.sh
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -56,7 +57,7 @@ fi
 
 # define the prompt
 PROMPT='\
-${prompt_host}$PR_RED%~ $PR_YELLOW$(parse_git_branch)
+${prompt_host}$PR_RED%~ $PR_YELLOW$(git_super_status)
 %(?..$PR_RED(%?%))$PR_LIGHT_CYAN>$PR_NO_COLOUR '
  
 PS2='$PR_BLUE%_$PR_WHITE>$PR_NO_COLOUR '
@@ -78,7 +79,7 @@ fi
 
 export RUBYOPT=rubygems
 export EDITOR='emacsclient -t'
-source ~/.aliases
+source ~/.zsh/aliases
 
 if [ -f ~/.projectrc ]; then #overrides go here. this should be the last statement
     source ~/.projectrc
