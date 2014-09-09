@@ -1,6 +1,7 @@
 # Lines configured by zsh-newuser-install 
 
 ######oh my zsh config######
+export ZSH_CUSTOM=$HOME/.zsh/custom-omz/
 ZSH=$HOME/.zsh/oh-my-zsh
 #ZSH_THEME="robbyrussell"
 plugins=(git pip brew osx python zsh-syntax-highlighting)
