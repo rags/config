@@ -11,7 +11,7 @@
    rhh = reset --hard HEAD
    amend = !git au && git commit --amend -aC HEAD
    show-files = show --name-status
-   pull = pull --log
+   pull = pull --log --rebase
    cont = !git au && git rebase --continue
    l3 = log -3
    l5 = log -5
