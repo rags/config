@@ -27,6 +27,7 @@
    lf = log --graph  --date-order --pretty=full
    clone = clone --recursive   
    d = diff
+   sh = stash
 [color]
    ui = auto
 [color "status"]
