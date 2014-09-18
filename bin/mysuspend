@@ -1,0 +1,6 @@
+# The idea is to have os indepent shutdown - without sudo
+if [ $(grep -c "ARCH" /proc/version) -eq 1 ]
+then
+	xflock4
+	systemctl suspend
+fi
