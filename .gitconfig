@@ -7,8 +7,9 @@
    sr = svn rebase
    sd = svn dcommit
    r = reset
-   rh = reset --hard
+   rh  = reset --hard
    rhh = reset --hard HEAD
+   rs  = reset --soft
    amend = !git au && git commit --amend -aC HEAD
    show-files = show --name-status
    pull = pull --log --rebase
