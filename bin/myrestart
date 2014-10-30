@@ -1,5 +1,5 @@
 # The idea is to have os indepent shutdown - without sudo
 if [ $(grep -c "ARCH" /proc/version) -eq 1 ]
 then
-	systemctl restart
+	systemctl reboot
 fi
