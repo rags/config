@@ -35,5 +35,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{%cpu% | %memory% | %swap% | %wlp3s0wi% | Volume: %vol% | %battery% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{%cpu% | %memory% | %swap% | %wlp3s0wi% | Vol: %vol% | %battery% | <fc=#ee9a00>%date%</fc>"
        }
