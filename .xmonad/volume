@@ -1,0 +1,2 @@
+out=$(amixer -D pulse sget Master)
+echo "$out" |  grep "\[off\]" -q && echo "M" || echo "$out" | grep -oEm1  "\[[0-9]+%\]" |  tr -d '[]'
