@@ -30,6 +30,7 @@
    clone = clone --recursive   
    d = diff
    sh = stash
+   cp = cherry-pick
 [color]
    ui = auto
 [color "status"]
