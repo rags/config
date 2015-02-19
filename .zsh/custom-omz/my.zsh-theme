@@ -14,7 +14,7 @@ PR_NO_COLOUR="%{$reset_color%}"
 if [[ -z "$SSH_CLIENT" ]]; then
         prompt_host=""
 else
-        prompt_host=%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$(hostname -s):
+        prompt_host=%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$(hostname):
 fi
 
 # define the prompt
