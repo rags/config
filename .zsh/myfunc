@@ -25,3 +25,8 @@ prn(){
 }
 
 calc(){python -c "print($@)"}
+
+grep-kill() {
+ ps aux | grep "$1" | awk '{print $2}' | xargs kill -9
+
+}
