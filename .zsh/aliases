@@ -32,3 +32,5 @@ alias cat=less
 alias ....='../../..'
 
 for (( i=1; i<11; i++ )) ; do alias $i="~$i"; done
+
+alias update-time='sudo ntpdate -u pool.ntp.org'
