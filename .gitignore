@@ -10,3 +10,4 @@ build
 .xmonad/xmonad.errors
 .xmonad/xmonad.hi
 *.o
+.DS_Store
