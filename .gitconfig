@@ -9,6 +9,7 @@
    r = reset
    rh  = reset --hard
    rhh = reset --hard HEAD
+   rhh1 = reset --hard HEAD~
    rs  = reset --soft
    amend-staged = commit --amend -C HEAD
    amend = !git au && git commit --amend -aC HEAD
