@@ -11,3 +11,5 @@ build
 .xmonad/xmonad.hi
 *.o
 .DS_Store
+.idea
+out
