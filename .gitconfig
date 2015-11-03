@@ -31,6 +31,7 @@
    clone = clone --recursive   
    d = diff
    sh = stash
+   sl = !git stash && git pull && git stash pop
    cp = cherry-pick
 [color]
    ui = auto
