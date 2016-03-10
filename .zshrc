@@ -60,3 +60,17 @@ if [ -f ~/.projectrc ]; then #overrides go here. this should be the last stateme
     source ~/.projectrc
 fi
 #tmux
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH=$PATH:/usr/local/aws/bin/
+test -e /usr/local/aws/bin/aws_zsh_completer.sh && source /usr/local/aws/bin/aws_zsh_completer.sh
+
+
+
+
+
+
+
+
+
+

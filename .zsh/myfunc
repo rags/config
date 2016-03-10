@@ -30,3 +30,8 @@ gkill() {
  ps aux | grep "$1" | awk '{print $2}' | xargs kill -9
 
 }
+
+s3cat() {
+ aws s3 cp s3://$1 -
+
+}
