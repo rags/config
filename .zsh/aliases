@@ -32,7 +32,9 @@ alias cat=less
 alias ....='../../..'
 alias s3='aws s3'
 alias emr='aws emr'
-
+alias emr-curl='curl --socks5 localhost:8157'
+alias emr-ssh='emr ssh --key-pair-file ~/raghunr_spark.pem --cluster-id'
+alias emr-socks='emr socks --key-pair-file ~/raghunr_spark.pem --cluster-id'
 for (( i=1; i<11; i++ )) ; do alias $i="~$i"; done
 
 alias update-time='sudo ntpdate -u pool.ntp.org'
