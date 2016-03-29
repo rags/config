@@ -13,7 +13,7 @@
    rs  = reset --soft
    amend-staged = commit --amend -C HEAD
    amend = !git au && git commit --amend -aC HEAD
-   show-files = show --name-status
+   sf = show --name-status
    pull = pull --log --rebase
    rpull = pull --log --rebase --recurse-submodules 
    cont = !git au && git rebase --continue
@@ -58,3 +58,4 @@
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = true
+	setup-crv = true
