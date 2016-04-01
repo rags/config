@@ -1,0 +1,27 @@
+./make_links
+
+#install brew and use brew to install my applications. See .Brewfile for the list
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew bundle --global
+
+
+#configure emacs
+git clone --recursive git@github.com:rags/.emacs.d ~/repos/.emacs.d
+
+ln -s  ~/repos/.emacs.d ~/.emacs.d
+
+
+#install python packages
+sudo pip3 install --upgrade pip
+pip3 install ipython matplotlib rope ropemacs numpy scipy jupyter
+
+
+
+
+
+
+
+
+
+
