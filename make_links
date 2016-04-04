@@ -1,1 +1,2 @@
 for file in .*; do if [ $file != '.git' ]; then ln -sf `pwd`/$file ~/$file; fi; done
+ln -sf `pwd`/bin ~/bin
