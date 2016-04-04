@@ -62,9 +62,9 @@ fi
 #tmux
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-export PATH=$PATH:/usr/local/aws/bin/
+export PATH=$PATH:/usr/local/aws/bin/:/usr/local/Cellar/awscli/1.10.17/libexec/bin/
 test -e /usr/local/aws/bin/aws_zsh_completer.sh && source /usr/local/aws/bin/aws_zsh_completer.sh
-
+test -e /usr/local/Cellar/awscli/1.10.17/libexec/bin/aws_zsh_completer.sh && source /usr/local/Cellar/awscli/1.10.17/libexec/bin/aws_zsh_completer.sh
 
 
 

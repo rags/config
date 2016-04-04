@@ -9,6 +9,7 @@ brew 'xz'
 brew 'tmux'
 brew 'python3'
 brew 'awscli'
+brew 'ssh-copy-id'
 
 cask 'vlc'
 cask 'iterm2'
