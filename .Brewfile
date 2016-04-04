@@ -8,6 +8,7 @@ brew 'zsh'
 brew 'xz'
 brew 'tmux'
 brew 'python3'
+brew 'awscli'
 
 cask 'vlc'
 cask 'iterm2'
