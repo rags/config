@@ -1,0 +1,15 @@
+AMI_VERSION="3.8.0"
+KEY_NAME="${USER}_spark"
+INSTANCE_TYPE=c3.8xlarge
+MASTER_PRICE=0.9
+SLAVE_PRICE=0.9
+SLAVE_COUNT=30
+ 
+aws emr create-cluster \
+--name "Spark-on-EMR BIG [Console-$USER]" \
+--ami-version ${AMI_VERSION} \
+--service-role EMR-DefaultRole --ec2-attributes InstanceProfile=EMR-EC2-DefaultRole,KeyName=${KEY_NAME},SubnetId=subnet-d7854dea,EmrManagedMasterSecurityGroup=sg-5a5c173e,EmrManagedSlaveSecurityGroup=sg-5a5c173e,AdditionalMasterSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49,AdditionalSlaveSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49 \
+--instance-groups InstanceGroupType=MASTER,InstanceType=${INSTANCE_TYPE},InstanceCount=1,BidPrice=${MASTER_PRICE} \
+InstanceGroupType=CORE,BidPrice=${SLAVE_PRICE},InstanceType=${INSTANCE_TYPE},InstanceCount=${SLAVE_COUNT} \
+--bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark,Args=-v,1.4.0.a Path=s3://fortune-etl-shared/spark/emr_bootstrap_java_8.sh \
+--log-uri s3://fortune-devs/${USER}/spark

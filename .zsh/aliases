@@ -41,3 +41,4 @@ alias update-time='sudo ntpdate -u pool.ntp.org'
 
 #goto each sub directory in parent folder and run gst
 alias ..gst='echo "`ls -d ../*/`" | while read -r l; do (cd $l && prn ">> `pwd`" && gst); done'
+alias ..commits='..gst | grep -B 3 "[ 1-9] commit"'
