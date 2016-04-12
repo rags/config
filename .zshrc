@@ -10,7 +10,7 @@ DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 ######oh my zsh config######
 
-source ~/.zsh/myfunc
+
 source ~/.zsh/git-prompt/zshrc.sh
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -55,7 +55,7 @@ fi
 export RUBYOPT=rubygems
 export EDITOR='emacsclient -t'
 source ~/.zsh/aliases
-
+source ~/.zsh/myfunc
 if [ -f ~/.projectrc ]; then #overrides go here. this should be the last statement
     source ~/.projectrc
 fi
