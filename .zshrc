@@ -4,7 +4,8 @@
 export ZSH_CUSTOM=$HOME/.zsh/custom-omz/
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_THEME="my"
-plugins=(git pip brew osx python zsh-syntax-highlighting)
+ZSH_TMUX_AUTOSTART=true
+plugins=(git pip brew brew-cask osx python zsh-syntax-highlighting aws command-not-found common-aliases jsontools sudo tmux colorize cp copyfile dirpersist dircycle extract)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root) 
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
@@ -61,10 +62,10 @@ if [ -f ~/.projectrc ]; then #overrides go here. this should be the last stateme
 fi
 #tmux
 
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=$PATH:/usr/local/aws/bin/:/usr/local/Cellar/awscli/1.10.17/libexec/bin/
-test -e /usr/local/aws/bin/aws_zsh_completer.sh && source /usr/local/aws/bin/aws_zsh_completer.sh
-test -e /usr/local/Cellar/awscli/1.10.17/libexec/bin/aws_zsh_completer.sh && source /usr/local/Cellar/awscli/1.10.17/libexec/bin/aws_zsh_completer.sh
+
 
 
 

@@ -1,9 +1,9 @@
 #aliases
 alias syn="synergys --config ~/.synergy.conf --name main --daemon"
-alias ak='awk "{print \$2 }" | xargs kill -9'
-alias killjava='ps aux | grep jar | grep -v "\(intellij\|Twist\|grep\)" | ak'
-alias g='PAGER=more git'
+alias -g AK=' | awk "{print \$2 }" | xargs kill -9'
 alias p='ps aux | grep -v grep| grep'
+alias g='PAGER=more git'
+alias killjava='p jar G -v "\(intellij\|Twist\|grep\)" AK'
 alias suemacs="emacs /sudo::\`pwd\`/\$1"
 alias cls='xset dpms force off'
 alias standby='xset dpms force standby'
@@ -23,13 +23,12 @@ alias gl='g fetch && g log --name-status ..remotes/origin/`git b | grep ^\*| sed
 alias glp='gl && gp'
 alias gcont='g add -A && g cont'
 alias py='nohup ipython notebook --pylab inline &'
-alias cal-m='cal | grep -E "\b`date +%e`\b|$"'
+alias cal-m='cal G -E "\b`date +%e`\b|$"'
 alias start.mysql='(cd /usr/local/mysql && sudo ./bin/mysqld_safe)'
 alias stop.mysql='mysqladmin -u root -p shutdown'
 alias pp='sudo powerpill'
 alias open=xdg-open
 alias cat=less
-alias ....='../../..'
 alias s3='aws s3'
 alias emr='aws emr'
 alias emr-curl='curl --socks5 localhost:8157'
@@ -42,4 +41,4 @@ alias update-time='sudo ntpdate -u pool.ntp.org'
 
 #goto each sub directory in parent folder and run gst
 alias ..gst='echo "`ls -d ../*/`" | while read -r l; do (cd $l && prn ">> `pwd`" && gst); done'
-alias ..commits='..gst | grep -B 3 "[ 1-9] commit"'
+alias ..commits='..gst  G -B 3 "[ 1-9] commit"'

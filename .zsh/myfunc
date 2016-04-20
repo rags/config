@@ -35,3 +35,7 @@ s3cat() {
  aws s3 cp s3://$1 -
 
 }
+
+emr-state() {
+ emr describe-cluster --cluster-id $1 | grep -i state
+}
