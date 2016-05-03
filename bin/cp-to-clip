@@ -1,0 +1,5 @@
+if [ -x "`which pbcopy`" ]; then
+   tmux show-buffer | pbcopy
+else
+   tmux show-buffer | xsel -i -b
+fi

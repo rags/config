@@ -32,7 +32,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '~/.zshrc'
 
-
+autoload -U zmv
 autoload -Uz compinit
 autoload -U zargs
 compinit

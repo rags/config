@@ -14,6 +14,7 @@ alias emacsd='nohup emacs --daemon'
 alias em='emacsclient'
 alias ec='emacsclient -nc'
 alias e='em -t'
+
 #alias et='e -e "(client-initialization (selected-frame))"'
 alias et='e -e "(make-my-layout)"'
 alias ew='em -n'
@@ -23,6 +24,7 @@ alias gl='g fetch && g log --name-status ..remotes/origin/`git b | grep ^\*| sed
 alias glp='gl && gp'
 alias gcont='g add -A && g cont'
 alias py='nohup ipython notebook --pylab inline &'
+
 alias cal-m='cal G -E "\b`date +%e`\b|$"'
 alias start.mysql='(cd /usr/local/mysql && sudo ./bin/mysqld_safe)'
 alias stop.mysql='mysqladmin -u root -p shutdown'
@@ -42,3 +44,13 @@ alias update-time='sudo ntpdate -u pool.ntp.org'
 #goto each sub directory in parent folder and run gst
 alias ..gst='echo "`ls -d ../*/`" | while read -r l; do (cd $l && prn ">> `pwd`" && gst); done'
 alias ..commits='..gst  G -B 3 "[ 1-9] commit"'
+
+
+#file associations
+
+alias -s py="python"
+alias -s txt='e'
+alias -s xml='e'
+alias -s html='open'
+alias -s htm='open'
+alias -s json='e'
