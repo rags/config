@@ -28,7 +28,7 @@
    au = add -u
    dag = log --graph  --date-order
    lf = log --graph  --date-order --pretty=full
-   clone = clone --recursive   
+   clone-r = clone --recursive   
    d = diff
    sh = stash
    sl = !git stash && git pull && git stash pop

@@ -11,6 +11,7 @@ brew 'python3'
 brew 'awscli'
 brew 'ssh-copy-id'
 brew 'watch'
+brew 'node'
 
 cask 'vlc'
 cask 'iterm2'
