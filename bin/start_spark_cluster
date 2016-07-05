@@ -11,7 +11,7 @@ aws emr create-cluster \
 --service-role EMR-DefaultRole --ec2-attributes InstanceProfile=EMR-EC2-DefaultRole,KeyName=${KEY_NAME},SubnetId=subnet-d7854dea,EmrManagedMasterSecurityGroup=sg-5a5c173e,EmrManagedSlaveSecurityGroup=sg-5a5c173e,AdditionalMasterSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49,AdditionalSlaveSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49 \
 --instance-groups InstanceGroupType=MASTER,InstanceType=${INSTANCE_TYPE},InstanceCount=1 \
 InstanceGroupType=CORE,InstanceType=${INSTANCE_TYPE},InstanceCount=${SLAVE_COUNT} \
---bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark,Args=-v,1.4.0.a Path=s3://fortune-etl-shared/spark/emr_bootstrap_java_8.sh \
+--bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark,Args=-v,1.4.0.a Path=s3://fortune-etl-shared/spark/emr_bootstrap_java_8.sh Path=s3://elasticmapreduce/bootstrap-actions/install-ganglia \
     --log-uri s3://fortune-devs/${USER}/spark
 
 #--instance-groups InstanceGroupType=MASTER,InstanceType=${INSTANCE_TYPE},InstanceCount=1,BidPrice=${MASTER_PRICE} \
