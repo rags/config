@@ -3,3 +3,5 @@ if [ -x "`which pbcopy`" ]; then
 else
    tmux show-buffer | xsel -i -b
 fi
+tmux display "copied!!"
+

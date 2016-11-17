@@ -1,0 +1,44 @@
+# Mouse options
+set -g mouse on
+bind M set -g mouse on \; display "Mouse ON"
+
+bind m set -g mouse off \; display "Mouse OFF"
+
+
+set-window-option -g mode-keys emacs
+set-window-option -g window-status-current-bg red
+set-window-option -g window-status-current-fg white
+set-window-option -g window-status-current-attr 'bold'
+set-window-option -g window-status-current-attr 'bold'
+set-window-option -g window-status-fg black
+set-window-option -g window-status-bg white
+set-window-option -g automatic-rename on
+set-window-option -g utf8 on
+
+set-option -g status-bg blue
+set-option -g status-fg white
+set-option -g status on
+set-option -g status-keys emacs
+set-option -g prefix `
+set-option -g prefix2 C-b
+
+bind-key C-c run '~/bin/cp-to-clip'
+bind-key C-v run '~/bin/paste-frm-clip'
+bind-key v run '~/bin/paste-frm-clip'
+
+bind-key R command-prompt "rename-window '%%'"
+
+#unbind-key C-b
+unbind %
+bind | split-window -h
+unbind '"'
+bind - split-window -v
+unbind ]
+bind C-y paste-buffer
+bind y paste-buffer
+bind-key ` send-prefix
+
+set -g history-limit 5000
+
+setw -g monitor-activity on
+set -g visual-activity on
