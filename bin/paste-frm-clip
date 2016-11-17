@@ -1,5 +1,5 @@
 if [ -x "`which pbpaste`" ]; then
-   tmux set-buffer "`pbpaste`" && tmux paste-buffer
+   tmux set-buffer "`reattach-to-user-namespace pbpaste`" && tmux paste-buffer
 else
    tmux set-buffer "`xsel -o -b`" && tmux paste-buffer
 fi

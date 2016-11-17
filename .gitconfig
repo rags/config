@@ -8,9 +8,9 @@
    sd = svn dcommit
    r = reset
    rh  = reset --hard
-   rhh = reset --hard HEAD
-   rhh1 = reset --hard HEAD~
+   rhh-1 = reset --hard HEAD~
    rs  = reset --soft
+   rsh-1  = reset --soft HEAD~
    amend-staged = commit --amend -C HEAD
    amend = !git au && git commit --amend -aC HEAD
    sf = show --name-status
@@ -44,7 +44,7 @@
 [push]
    default = tracking
 [core]
-	autocrlf = false
+	autocrlf = input
 	excludesfile = ~/.gitignore
 	pager = less -FMRiX
 	editor = emacsclient -t
