@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# Grab odin stuff over SSH
+ODIN_OUTPUT=`ssh dev -q /apollo/env/envImprovement/bin/odin-get \"$@\" 2>&1`
+
+# Output the error for debugging, in a way that doesn't clash with output of command
+echo $ODIN_OUTPUT 1>&2
+
+# Output the odin credentials, on separate lines
+echo $ODIN_OUTPUT | sed -e 's/ /\
+/g'

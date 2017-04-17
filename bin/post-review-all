@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# This is a wrapper around the multi package post-review command e.g. post-review -t package1 -t package2
+# This will find all packages in your workspace that have unpushed commits and post a review
+# It can be executed from anywhere in your workspace
+
+# https://w.amazon.com/index.php/EnvImprovementNinjas/PostReviewAll
+
+err() {
+  echo "$@" >&2
+}
+
+(
+  workspace_root=$(findup packageInfo 2>/dev/null)
+  returnval="$?"
+  if [[ "${returnval}" -ne 0 ]]; then
+    err "Cannot find the workspace root.  Are you in a brazil workspace?"
+    exit "${returnval}"
+  fi
+
+  cd "$workspace_root/src"
+
+  cmd="post-review"
+  has_unpushed=false
+
+  for f in *; do
+      # Only work with directories
+      if [[ ! -d "$f" ]]; then
+        continue
+      fi
+      dir="$f"
+      cd "$dir"
+
+      current_branch=$(git name-rev --name-only HEAD)
+
+      # gets a single line of output per commit not on the remote
+      num_unpushed_commits=$(git log $current_branch --not --remotes  --oneline 2>/dev/null | wc -l)
+
+      if [[ $num_unpushed_commits -gt 0 ]]; then
+        cmd="$cmd -t $dir"
+        echo "Adding $dir"
+        has_unpushed=true
+      fi
+      cd ..
+  done
+
+  if [ "$has_unpushed" = true ] ; then
+    $cmd $@
+  else
+    err "No unpushed commits found"
+    exit 1
+  fi 
+)

@@ -1,0 +1,7 @@
+#! /bin/zsh
+
+clusters=`aws emr list-clusters --active | grep raghunr | wc -l`
+if [ $clusters -gt 0 ]; then
+  which say && say "Cluster running"
+  echo "might want to shut it down" | mail -s "Cluster running" raghunr@amazon.com
+fi

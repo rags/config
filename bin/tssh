@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# author duvurug@
+# Usage ./tssh environment-name stage
+# e.g. ./tssh HorizontePlatform/SmpWebsite/NA Prod
+
+usage() {
+  echo "usage: tssh environment-name stage-name"
+}
+
+# length of arguments must be 2
+if (($# != 2))
+then
+  usage
+  exit 1
+fi
+
+# When there are more than $LIMIT hosts in a env, we will let user mention hosts he want to ssh to
+LIMIT=12
+# All hosts in a given apollo env as a STRING. The input is sorted, so that if there are too many hosts the users can
+# reliably select a range of hosts by specifying start_index and end_index repeatedly to login to all env hosts in different
+# tmux sessions
+apollo_hosts=$(/apollo/env/envImprovement/bin/getApolloEnvironmentHosts -e $1 -s $2 --show=N | sort);
+# All hosts in a given apoll env as an ARRAY
+hosts=( $apollo_hosts )
+
+no_of_hosts=${#hosts[@]}
+
+tmux_session_name=$1-$2
+
+display_hosts() {
+  for (( i=0; i<=$(( $no_of_hosts -1 )); i++ ))
+  do
+    echo "$i. ${hosts[$i]}"
+  done
+}
+
+# check if the given env and stage is valid
+if (($no_of_hosts == 0))
+then
+  echo "There are no hosts in env: $1 and stage: $2. Please check if they are spelled right."
+  exit 1
+fi
+
+# check if there are too many hosts in a env, if there are ask for the start_index and end_index
+# of hosts the user wants to ssh to
+if (($no_of_hosts > $LIMIT))
+then
+  display_hosts
+  echo "There are too many hosts in the environment, please specify start and end index"
+  echo -n "Start index: "
+  read start_index
+  echo -n "End index: "
+  read end_index
+  # TODO: some sanity checks end_index > start_index
+  # slice the hosts between the range
+  hosts=("${hosts[@]:$start_index:$((end_index-start_index+1))}")
+  tmux_session_name=$1-$2-$start_index-$end_index
+fi
+
+# create a new session.
+tmux new -d -s $tmux_session_name
+
+# Start a new window and ssh to the first host
+tmux new-window "ssh ${hosts[0]}"
+unset hosts[0];
+
+# ssh to remaining hosts by creating panes in the window we created above
+for i in "${hosts[@]}"
+do
+  tmux split-window -h "ssh $i"
+  tmux select-layout tiled > /dev/null
+done
+
+tmux select-pane -t 0
+
+# turn on the synchronization between panes
+tmux set-window-option synchronize-panes on > /dev/null
+
+# attach to the session.
+tmux attach -t $tmux_session_name

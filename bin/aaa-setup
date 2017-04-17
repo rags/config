@@ -1,0 +1,17 @@
+#! /bin/zsh
+sudo  mkdir -p /apollo/env/FortuneCookie/Apollo
+
+sudo  mkdir -p /apollo/env/FortuneCookie/var/state/aaa
+
+#sudo  mkdir -p /apollo/env/FortuneCookie.CONSUMES.AAASecurityDaemon/var/state/aaa
+
+sudo chown -R raghunr /apollo/env/FortuneCookie
+sudo chown -R raghunr /apollo/env/FortuneCookie.CONSUMES.AAASecurityDaemon/
+
+export dev=dev-dsk-raghunr-1b-i-8bd9252f.ap-northeast-1.amazon.com
+
+scp -r ${dev}:/apollo/env/FortuneCookie/Apollo/Manifest /apollo/env/FortuneCookie/Apollo
+
+scp -r ${dev}:/apollo/env/FortuneCookie/var/state/aaa/ /apollo/env/FortuneCookie/var/state/
+
+scp ${dev}:/apollo/env/FortuneCookie/var/state/aaa/be.sock.txt /apollo/env/FortuneCookie/var/state/aaa/be.sock.txt

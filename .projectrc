@@ -1,0 +1,123 @@
+#Adding SDETools to $PATH
+ export PATH=/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts
+
+
+#Configuration needed by perforce to function correctly in any directory 
+ export P4CONFIG=.p4config
+ #Make SDETools use a simplified directory structure for organizing source code.  
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+export DISPLAY=:0
+# set this to whereever you installed spark
+export SPARK_HOME="$HOME/spark-1.6.1-bin-hadoop2.6"
+export NODE_PATH=/usr/local/Cellar/node/5.11.0/lib/node_modules
+
+# Where you specify options you would normally add after bin/pyspark
+export PYSPARK_SUBMIT_ARGS="--master local[2]"
+export PATH=$PATH:$SPARK_HOME/bin
+export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook' pyspark
+export PYSPARK_PYTHON=python3.5
+export SPARK_LOCAL_IP=127.0.0.1
+
+alias sudome='sudo sed -ri "s/(raghunr[^,]*)(.*)/\1/" /etc/sudoers'
+alias bb='git-root && APOLLO_ACTUAL_ENVIRONMENT_ROOT=/apollo/env/`basename $(pwd)` brazil-build'
+alias b='brazil'
+alias ws='brazil ws'
+alias gll='(`g config --get remote.origin.url` && g fetch) && gl'
+alias ws-co='ws --use --package' 
+alias grep-failures='grep -B 2 -E "(Failures|Errors): +[1-9]"'
+alias brc='brazil-recursive-cmd'
+alias brca='brc --allPackages'
+alias bba='brca brazil-build --'
+alias bbs='bb server'
+alias bbb='bb build'
+alias bbc='bb clean'
+alias bbcb='bbc && bbb'
+alias cssh="ssh -A -t corp-ssh-bastions-36001.sea32.amazon.com ssh -A"
+alias ts-node='node ~ws/fortunecookie/src/FortuneCookieWebApp/node_modules/ts-node/dist/bin.js'
+alias sync-ws='NODE_PATH=/usr/local/Cellar/node/5.11.0/lib/node_modules node ~/bin/sync.js'
+alias prsync='git-root && rsync -avz . dev:$RPWD --exclude .git'
+alias ws-root="ws show G 'Root:' A '{print \$2}'"
+alias bbjava='bb && brazil-java'
+alias brazil-java='java  -cp  `brazil-path run.classpath`'
+
+if [[ '' != `alias open` ]] ; then unalias open; fi
+export AWS_CREDENTIALS_ODIN='com.amazon.access.AutoPnL Beta-dev-raghunr-1'
+export ws=~/ws
+export ap=~ws/actuals-pipeline/src/FortuneActualsDataPipeline/
+export pp=~ws/actuals-pipeline/src/FortuneCognosForecastingDataPipeline/
+export fc=~ws/fortunecookie/src/FortuneCookie/
+export ds=~ws/dataservice/src/AutoPnLDataService/
+
+export A1000='company_code=amazon.com/planning_business_type=retail/product_line=1000/part-0'
+export FAAF='fortune-analytics-apps/cognos_plan/integ/forecast/'
+export FAAA='fortune-analytics-apps/cognos_plan/integ/actuals/'
+
+scp_scripts() {
+   sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneCognosForecastingDataPipelineAssembly.jar"#'  ~pp/scripts/spark_submit.sh >/tmp/planning.sh
+   sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneActualsDataPipelineAssembly.jar"#'  ~ap/scripts/spark_submit.sh > /tmp/actuals.sh
+
+   chmod +x /tmp/planning.sh /tmp/actuals.sh
+   emr put --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/actuals.sh
+   emr put --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/planning.sh
+
+}
+
+upload_jars() {
+   (~ap && s3 cp build/lib/FortuneActualsDataPipelineAssembly.jar  s3://fortune-analytics-devs/raghunr/jars/)
+   (~pp && s3 cp build/lib/FortuneCognosForecastingDataPipelineAssembly.jar  s3://fortune-analytics-devs/raghunr/jars/)
+}
+
+alias bb_upload_jars='bba && upload_jars'
+
+
+emr_extract_logs() {
+if [ -z $BASEDIR  ]; then
+logs=s3://fortune-analytics-devs/$USER/emr_log/
+else  
+logs=$BASEDIR 
+fi
+
+echo "using base $logs [Use BASEDIR=your-dir $0 ... to override]"
+
+if [ -z $1  ]; then
+ echo "Need cluster id as param to start. Use one of the following: "
+ aws s3 ls $logs | sed -E 's#.*PRE ([^/]+)/#\1#'
+ return
+fi
+
+cluster=$1
+clusterbase=${logs}${cluster}/containers/
+if [ -z $2 ]; then
+ echo "Specify one of the following app ids as the second params: "
+ aws s3 ls  $clusterbase | sed -E 's#.*application_([^/]+)/#\1#'
+ return
+fi
+app=$2
+s3base=${clusterbase}application_$app/;
+
+nodes=$(aws s3 ls $s3base | wc -l)
+
+mkdir -p ~/logs/$cluster/$app
+for ((i=1;i<$nodes;i++)); do
+  j=$i
+  if [ ${#i} -lt 2 ]; then j=0$i; fi
+  aws s3 cp ${s3base}container_${app}_01_0000$j/stderr.gz ~/logs/$cluster/$app/stderr$j.gz
+  aws s3 cp ${s3base}container_${app}_01_0000$j/stdout.gz ~/logs/$cluster/$app/stdout$j.gz
+done
+
+echo "logs avialable in ~/logs/$cluster/$app"
+}
+
+alias emr-socks-prod='emr socks --key-pair-file ~/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
+alias emr-socks='emr socks --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id'
+
+alias emr-ssh-prod='emr ssh --key-pair-file ~/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
+alias emr-ssh='emr ssh --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id'
+
+alias odin='ssh -L 2009:localhost:2009 dev -f -N'
+#alias aaa='ssh -L 2009:localhost:2009 dev'
+alias aaa-fc="socat 'UNIX-LISTEN:/tmp/be.sock,reuseaddr,fork' EXEC:'ssh dev socat STDIO UNIX-CONNECT\:\$(cat /apollo/env/FortuneCookie.CONSUMES.AAASecurityDaemon/var/state/aaa/be.sock.txt)' & disown >/dev/null 2>&1"
+alias aaa-fc-integration='aaa-fc && odin'
+
+alias s3dp='s3 --profile dp'
