@@ -1,8 +1,10 @@
 #aliases
 alias syn="synergys --config ~/.synergy.conf --name main --daemon"
 alias -g AK=' | awk "{print \$2 }" | xargs kill -9'
+alias -g A=' | awk'
 alias p='ps aux | grep -v grep| grep'
 alias g='PAGER=more git'
+alias git-root='`git rev-parse --show-toplevel`'
 alias killjava='p jar G -v "\(intellij\|Twist\|grep\)" AK'
 alias suemacs="emacs /sudo::\`pwd\`/\$1"
 alias cls='xset dpms force off'
@@ -24,6 +26,7 @@ alias gl='g fetch && g log --name-status ..@{u} && g rebase'
 alias glp='gl && gp'
 alias gcont='g add -A && g cont'
 alias py='nohup ipython notebook --pylab inline &'
+alias serve='python -m SimpleHTTPServer 6666'
 
 alias cal-m='cal G -E "\b`date +%e`\b|$"'
 alias start.mysql='(cd /usr/local/mysql && sudo ./bin/mysqld_safe)'

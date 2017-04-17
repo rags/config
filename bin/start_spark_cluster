@@ -1,5 +1,5 @@
 AMI_VERSION="3.8.0"
-KEY_NAME="${USER}_spark"
+KEY_NAME="FortuneAnalyticsDataPipeline-beta"
 INSTANCE_TYPE=c3.8xlarge
 MASTER_PRICE=1.0
 SLAVE_PRICE=1.0
@@ -21,11 +21,11 @@ SLAVE_COUNT=32
 aws emr create-cluster \
 --name "$USER - Cluster" \
 --release-label emr-4.4.0 \
---region us-east-1 \
 --applications Name=Hadoop Name=Spark Name=Ganglia \
---bootstrap-actions Path="s3://fortune-etl-shared/hadoop/jce/java8/install_jce.rb",Name="JCE Unlimited for Java 8" \
---ec2-attributes InstanceProfile=EMR-EC2-DefaultRole,KeyName=${KEY_NAME},SubnetId=subnet-d7854dea,EmrManagedMasterSecurityGroup=sg-5a5c173e,EmrManagedSlaveSecurityGroup=sg-5a5c173e,AdditionalMasterSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49,AdditionalSlaveSecurityGroups=sg-2427de42,sg-2027de46,sg-2f27de49 \
---service-role EMR-DefaultRole \
---log-uri s3://fortune-devs/$USER/emr_log \
+--bootstrap-actions Path="s3://fortune-data-pipeline-emr-config/hadoop/jce/java8/install_jce.rb",Name="JCE Unlimited for Java 8" \
+--ec2-attributes InstanceProfile=EMR_EC2_DefaultRole,KeyName=${KEY_NAME},SubnetId=subnet-6ca45425,EmrManagedMasterSecurityGroup=sg-a52a86dd,EmrManagedSlaveSecurityGroup=sg-a62a86de,AdditionalMasterSecurityGroups=sg-8750fcff,sg-6851fd10,sg-5d51fd25,AdditionalSlaveSecurityGroups=sg-8750fcff,sg-6851fd10,sg-5d51fd25 \
+--service-role EMR_DefaultRole \
+--log-uri s3://fortune-analytics-devs/$USER/emr_log \
 --instance-groups InstanceGroupType=MASTER,InstanceType=${INSTANCE_TYPE},InstanceCount=1 InstanceGroupType=CORE,InstanceType=${INSTANCE_TYPE},InstanceCount=${SLAVE_COUNT} \
 --configurations http://fortune-etl-shared.s3.amazonaws.com/hadoop/configuration/java8homeconfig.json
+

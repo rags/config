@@ -32,10 +32,27 @@ gkill() {
 }
 
 s3cat() {
- aws s3 cp s3://$1 -
-
+args=("$@")
+s3path=$args[-1]
+if [ ${s3path[0,2]} != "s3" ]; then s3path=s3://$s3path; fi
+aws s3 cp $args[1,-2] $s3path -
 }
 
 emr-state() {
  emr describe-cluster --cluster-id $1 | grep -i state
+}
+
+aws-prof() {
+  export AWS_DEFAULT_PROFILE=$1
+}
+
+while_err() {
+  cmd=("$@")
+  eval $cmd
+  while (( ? > 0 )) { eval $cmd; }
+}
+
+chpwd() {
+   RPWD=${PWD#${HOME}}
+   if [ "$RPWD" != "$PWD" ]; then RPWD="~${RPWD}"; fi
 }

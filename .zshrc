@@ -4,7 +4,7 @@
 export ZSH_CUSTOM=$HOME/.zsh/custom-omz/
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_THEME="my"
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 plugins=(git pip brew brew-cask osx python zsh-syntax-highlighting aws command-not-found common-aliases jsontools sudo tmux colorize cp copyfile dirpersist dircycle extract)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root) 
 DISABLE_AUTO_UPDATE="true"
