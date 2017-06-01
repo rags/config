@@ -1,6 +1,6 @@
 #Adding SDETools to $PATH
  export PATH=/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts
-
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
 
 #Configuration needed by perforce to function correctly in any directory 
  export P4CONFIG=.p4config
@@ -44,9 +44,9 @@ alias brazil-java='java  -cp  `brazil-path run.classpath`'
 if [[ '' != `alias open` ]] ; then unalias open; fi
 export AWS_CREDENTIALS_ODIN='com.amazon.access.AutoPnL Beta-dev-raghunr-1'
 export ws=~/ws
-export ap=~ws/actuals-pipeline/src/FortuneActualsDataPipeline/
-export pp=~ws/actuals-pipeline/src/FortuneCognosForecastingDataPipeline/
-export fc=~ws/fortunecookie/src/FortuneCookie/
+export ap=~ws/pipelines/src/FortuneActualsDataPipeline/
+export pp=~ws/pipelines/src/FortuneCognosForecastingDataPipeline/
+export fc=~ws/cookie/src/FortuneCookie/
 export ds=~ws/dataservice/src/AutoPnLDataService/
 
 export A1000='company_code=amazon.com/planning_business_type=retail/product_line=1000/part-0'
