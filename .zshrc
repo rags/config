@@ -32,6 +32,10 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '~/.zshrc'
 
+if [ -d ~/.zsh/completion ]; then
+    fpath=(~/.zsh/completion $fpath)
+fi
+
 autoload -U zmv
 autoload -Uz compinit
 autoload -U zargs
@@ -45,8 +49,8 @@ bindkey "^[^W" backward-kill-line
 
 # vim:ft=zsh
 
-if [ -d ~/functions ]; then
-    fpath=(~/functions $fpath)
+if [ -d ~/.zsh/functions ]; then
+    fpath=(~/.zsh/functions $fpath)
 fi
 
 #if [[ -e "`which tmux`" ]]; then

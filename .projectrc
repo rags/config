@@ -1,6 +1,6 @@
 #Adding SDETools to $PATH
- export PATH=/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
+ export PATH=/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts:~/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
 
 #Configuration needed by perforce to function correctly in any directory 
  export P4CONFIG=.p4config
@@ -8,7 +8,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Hom
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 export DISPLAY=:0
 # set this to whereever you installed spark
-export SPARK_HOME="$HOME/spark-1.6.1-bin-hadoop2.6"
+export SPARK_HOME="$HOME/Downloads/spark-2.2.1-bin-hadoop2.7"
 export NODE_PATH=/usr/local/Cellar/node/5.11.0/lib/node_modules
 
 # Where you specify options you would normally add after bin/pyspark
@@ -16,7 +16,7 @@ export PYSPARK_SUBMIT_ARGS="--master local[2]"
 export PATH=$PATH:$SPARK_HOME/bin
 export PYSPARK_DRIVER_PYTHON=jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS='notebook' pyspark
-export PYSPARK_PYTHON=python3.5
+export PYSPARK_PYTHON=python3.6
 export SPARK_LOCAL_IP=127.0.0.1
 
 alias sudome='sudo sed -ri "s/(raghunr[^,]*)(.*)/\1/" /etc/sudoers'
@@ -44,22 +44,16 @@ alias brazil-java='java  -cp  `brazil-path run.classpath`'
 if [[ '' != `alias open` ]] ; then unalias open; fi
 export AWS_CREDENTIALS_ODIN='com.amazon.access.AutoPnL Beta-dev-raghunr-1'
 export ws=~/ws
-export ap=~ws/pipelines/src/FortuneActualsDataPipeline/
-export pp=~ws/pipelines/src/FortuneCognosForecastingDataPipeline/
-export fc=~ws/cookie/src/FortuneCookie/
-export ds=~ws/dataservice/src/AutoPnLDataService/
+export down=~/Downloads
 
-export A1000='company_code=amazon.com/planning_business_type=retail/product_line=1000/part-0'
-export FAAF='fortune-analytics-apps/cognos_plan/integ/forecast/'
-export FAAA='fortune-analytics-apps/cognos_plan/integ/actuals/'
 
 scp_scripts() {
    sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneCognosForecastingDataPipelineAssembly.jar"#'  ~pp/scripts/spark_submit.sh >/tmp/planning.sh
    sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneActualsDataPipelineAssembly.jar"#'  ~ap/scripts/spark_submit.sh > /tmp/actuals.sh
 
    chmod +x /tmp/planning.sh /tmp/actuals.sh
-   emr put --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/actuals.sh
-   emr put --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/planning.sh
+   emr put --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/actuals.sh
+   emr put --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/planning.sh
 
 }
 
@@ -74,8 +68,8 @@ alias bb_upload_jars='bba && upload_jars'
 emr_extract_logs() {
 if [ -z $BASEDIR  ]; then
 logs=s3://fortune-analytics-devs/$USER/emr_log/
-else  
-logs=$BASEDIR 
+else
+logs=$BASEDIR
 fi
 
 echo "using base $logs [Use BASEDIR=your-dir $0 ... to override]"
@@ -109,11 +103,11 @@ done
 echo "logs avialable in ~/logs/$cluster/$app"
 }
 
-alias emr-socks-prod='emr socks --key-pair-file ~/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
-alias emr-socks='emr socks --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id'
+alias emr-socks-prod='emr socks --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
+alias emr-socks='emr socks --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-beta.pem --cluster-id'
 
-alias emr-ssh-prod='emr ssh --key-pair-file ~/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
-alias emr-ssh='emr ssh --key-pair-file ~/FortuneAnalyticsDataPipeline-beta.pem --cluster-id'
+alias emr-ssh-prod='emr ssh --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
+alias emr-ssh='emr ssh --key-pair-file ~/.ssh/id_rsa --cluster-id'
 
 alias odin='ssh -L 2009:localhost:2009 dev -f -N'
 #alias aaa='ssh -L 2009:localhost:2009 dev'
@@ -121,3 +115,6 @@ alias aaa-fc="socat 'UNIX-LISTEN:/tmp/be.sock,reuseaddr,fork' EXEC:'ssh dev soca
 alias aaa-fc-integration='aaa-fc && odin'
 
 alias s3dp='s3 --profile dp'
+
+alias ssh-with-role=/Users/raghunr/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts/ssh-with-role
+alias ssh-with-role-new=/Users/raghunr/ws/athena-misc/src/AthenaBaseLpt/configuration/bin/ssh-with-role

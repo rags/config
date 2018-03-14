@@ -52,6 +52,17 @@ while_err() {
   while (( ? > 0 )) { eval $cmd; }
 }
 
+emrt(){
+ ssht hadoop@$1 $2
+}
+
+ssht () {
+ args=("$@")
+ host=$args[-2]
+ port=$args[-1]
+ ssh -NfL $args[1,-3] ${port}:localhost:${port} ${host}
+}
+
 chpwd() {
    RPWD=${PWD#${HOME}}
    if [ "$RPWD" != "$PWD" ]; then RPWD="~${RPWD}"; fi

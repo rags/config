@@ -13,6 +13,7 @@ brew 'ssh-copy-id'
 brew 'watch'
 brew 'node'
 brew 'reattach-to-user-namespace'
+brew 'docker'
 
 cask 'vlc'
 cask 'iterm2'
