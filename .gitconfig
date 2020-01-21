@@ -16,13 +16,18 @@
    sf = show --name-status
    pull = pull --log --rebase
    rpull = pull --log --rebase --recurse-submodules 
-   cont = !git au && git rebase --continue
+   rcont = !git au && git rebase --continue
+   cpcont = !git au && git cp --continue
+   mcont = !git au && git merge --continue
    l3 = log -3
    l5 = log -5
    l10 = log -10
+   l20 = log -20
    ls = log --name-status
    ls3 = log --name-status -3
    ls5 = log --name-status -5
+   ls10 = log --name-status -10
+   ls20 = log --name-status -20
    a   = add
    aa = add -A
    au = add -u
@@ -59,3 +64,5 @@
 	append-cr-url = true
 	pull-request-by-default = true
 	setup-crv = true
+[commit]
+	template = /Users/raghunr/cp-commit-template.txt

@@ -42,6 +42,10 @@ emr-state() {
  emr describe-cluster --cluster-id $1 | grep -i state
 }
 
+emr-master() {
+aws emr describe-cluster --query "Cluster.MasterPublicDnsName" --output text --cluster-id "$*"
+}
+
 aws-prof() {
   export AWS_DEFAULT_PROFILE=$1
 }
@@ -53,7 +57,7 @@ while_err() {
 }
 
 emrt(){
- ssht hadoop@$1 $2
+ ssht hadoop@`emr-master $1` $2
 }
 
 ssht () {
@@ -66,4 +70,16 @@ ssht () {
 chpwd() {
    RPWD=${PWD#${HOME}}
    if [ "$RPWD" != "$PWD" ]; then RPWD="~${RPWD}"; fi
+}
+
+emr-presto-restart(){
+hosts=(`aws emr list-instances --cluster-id $1 --query "Instances[].PublicIpAddress" --output text`)
+echo ${hosts[*]} will restart
+for h in ${hosts[*]}; do
+  ssh -o StrictHostKeyChecking=no hadoop@$h "hostname && sudo restart presto-server && sync && echo 3 | sudo tee /proc/sys/vm/drop_caches"
+done
+}
+
+clear-aws-creds() {
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION
 }

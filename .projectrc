@@ -1,6 +1,6 @@
 #Adding SDETools to $PATH
- export PATH=/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts:~/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+ export PATH=~/.toolbox/bin/:/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts:~/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts:/Library/TeX/Distributions/Programs/texbin/
+export JAVA_HOME=~/current-java
 
 #Configuration needed by perforce to function correctly in any directory 
  export P4CONFIG=.p4config
@@ -36,33 +36,18 @@ alias bbcb='bbc && bbb'
 alias cssh="ssh -A -t corp-ssh-bastions-36001.sea32.amazon.com ssh -A"
 alias ts-node='node ~ws/fortunecookie/src/FortuneCookieWebApp/node_modules/ts-node/dist/bin.js'
 alias sync-ws='NODE_PATH=/usr/local/Cellar/node/5.11.0/lib/node_modules node ~/bin/sync.js'
-alias prsync='git-root && rsync -avz . dev:$RPWD --exclude .git'
+alias prsync='git-root && rsync -avz . d:$RPWD --exclude .git --exclude target --exclude build'
 alias ws-root="ws show G 'Root:' A '{print \$2}'"
 alias bbjava='bb && brazil-java'
 alias brazil-java='java  -cp  `brazil-path run.classpath`'
 
 if [[ '' != `alias open` ]] ; then unalias open; fi
-export AWS_CREDENTIALS_ODIN='com.amazon.access.AutoPnL Beta-dev-raghunr-1'
+#export AWS_CREDENTIALS_ODIN='com.amazon.access.AutoPnL Beta-dev-raghunr-1'
 export ws=~/ws
 export down=~/Downloads
+export p=~ws/presto/src/Aws157Presto
+export ia=~ws/presto/src/Aws751InstanceAgent
 
-
-scp_scripts() {
-   sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneCognosForecastingDataPipelineAssembly.jar"#'  ~pp/scripts/spark_submit.sh >/tmp/planning.sh
-   sed 's#ASSEMBLY_JAR_S3_PATH=.*#ASSEMBLY_JAR_S3_PATH="s3://fortune-analytics-devs/raghunr/jars/FortuneActualsDataPipelineAssembly.jar"#'  ~ap/scripts/spark_submit.sh > /tmp/actuals.sh
-
-   chmod +x /tmp/planning.sh /tmp/actuals.sh
-   emr put --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/actuals.sh
-   emr put --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-beta.pem --cluster-id $1 --src /tmp/planning.sh
-
-}
-
-upload_jars() {
-   (~ap && s3 cp build/lib/FortuneActualsDataPipelineAssembly.jar  s3://fortune-analytics-devs/raghunr/jars/)
-   (~pp && s3 cp build/lib/FortuneCognosForecastingDataPipelineAssembly.jar  s3://fortune-analytics-devs/raghunr/jars/)
-}
-
-alias bb_upload_jars='bba && upload_jars'
 
 
 emr_extract_logs() {
@@ -109,12 +94,33 @@ alias emr-socks='emr socks --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-b
 alias emr-ssh-prod='emr ssh --key-pair-file ~/.ssh/FortuneAnalyticsDataPipeline-prod.pem --cluster-id'
 alias emr-ssh='emr ssh --key-pair-file ~/.ssh/id_rsa --cluster-id'
 
-alias odin='ssh -L 2009:localhost:2009 dev -f -N'
-#alias aaa='ssh -L 2009:localhost:2009 dev'
-alias aaa-fc="socat 'UNIX-LISTEN:/tmp/be.sock,reuseaddr,fork' EXEC:'ssh dev socat STDIO UNIX-CONNECT\:\$(cat /apollo/env/FortuneCookie.CONSUMES.AAASecurityDaemon/var/state/aaa/be.sock.txt)' & disown >/dev/null 2>&1"
+alias odin='ssh -L 2009:localhost:2009 d -f -N'
+#alias aaa='ssh -L 2009:localhost:2009 d'
+alias aaa-fc="socat 'UNIX-LISTEN:/tmp/be.sock,reuseaddr,fork' EXEC:'ssh d socat STDIO UNIX-CONNECT\:\$(cat /apollo/env/FortuneCookie.CONSUMES.AAASecurityDaemon/var/state/aaa/be.sock.txt)' & disown >/dev/null 2>&1"
 alias aaa-fc-integration='aaa-fc && odin'
 
 alias s3dp='s3 --profile dp'
 
 alias ssh-with-role=/Users/raghunr/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts/ssh-with-role
 alias ssh-with-role-new=/Users/raghunr/ws/athena-misc/src/AthenaBaseLpt/configuration/bin/ssh-with-role
+alias presto-cli='~/ws/presto/src/Aws157Presto/presto-cli/target/presto-cli-*-executable.jar'
+
+ source $HOME/.cargo/env
+
+
+if [ -d ~/bin/isen-cred ]; then
+    source ~/bin/isen-cred
+fi
+
+bbst() {
+bb single-test -DtestClass=$1
+}
+
+alias jshell='JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.4.jdk/Contents/Home jshell'
+
+source ~/bin/isen-cred
+alias emr-log-access='isen_cred 514483059857 EMRSupportLogAccess'
+
+ssh-mf-private() {
+    ssh -i ~/asset-iad.pem hadoop@`aws ec2 describe-instances   --filters "Name=network-interface.private-dns-name,Values=$1" "Name=tag-key,Values=Name,Name=tag-value,Values=mf_asset" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].PublicIpAddress" --output text   | tr '\t' '\n'`
+}
