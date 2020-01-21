@@ -26,7 +26,7 @@ alias gl='g fetch;g log --name-status ..@{u};g rebase'
 alias glp='gl && gp'
 alias gcont='g add -A && g cont'
 alias py='nohup ipython notebook --pylab inline &'
-alias serve='python -m SimpleHTTPServer 6666'
+alias serve='python -m http.server 9666'
 
 alias cal-m='cal G -E "\b`date +%e`\b|$"'
 alias start.mysql='(cd /usr/local/mysql && sudo ./bin/mysqld_safe)'
