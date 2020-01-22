@@ -20,7 +20,7 @@ export PYSPARK_PYTHON=python3.6
 export SPARK_LOCAL_IP=127.0.0.1
 
 alias sudome='sudo sed -ri "s/(raghunr[^,]*)(.*)/\1/" /etc/sudoers'
-alias bb='git-root && APOLLO_ACTUAL_ENVIRONMENT_ROOT=/apollo/env/`basename $(pwd)` brazil-build'
+alias bb='brazil-build'
 alias b='brazil'
 alias ws='brazil ws'
 alias gll='(`g config --get remote.origin.url` && g fetch) && gl'
