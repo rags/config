@@ -79,3 +79,5 @@ export PATH=$PATH:/usr/local/aws/bin/:/usr/local/Cellar/awscli/1.10.17/libexec/b
 
 
 
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+export PATH=$HOME/.toolbox/bin:$PATH

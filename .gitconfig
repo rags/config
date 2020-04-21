@@ -65,4 +65,4 @@
 	pull-request-by-default = true
 	setup-crv = true
 [commit]
-	template = /Users/raghunr/cp-commit-template.txt
+	template = /home/raghunr/cp-commit-template.txt

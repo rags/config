@@ -1,6 +1,8 @@
 #Adding SDETools to $PATH
- export PATH=~/.toolbox/bin/:/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:~/ws/misc/src/AmaSSH/scripts:~/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts:/Library/TeX/Distributions/Programs/texbin/
-export JAVA_HOME=~/current-java
+export PATH=/apollo/env/envImprovement/bin:/apollo/env/SDETools/bin:/usr/local/Cellar/node/5.11.0/bin:~/bin:$PATH:~/ws/misc/src/AmaSSH/scripts:/apollo/env/BrazilThirdPartyTool/bin/:/apollo/env/OctaneBrazilTools/bin:/apollo/env/AmazonAwsCli/bin/:~/.toolbox/bin/
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+
 
 #Configuration needed by perforce to function correctly in any directory 
  export P4CONFIG=.p4config
@@ -103,6 +105,7 @@ alias s3dp='s3 --profile dp'
 
 alias ssh-with-role=/Users/raghunr/ws/ssh-with-role/src/IotSshUtils/configuration/zsh-scripts/ssh-with-role
 alias ssh-with-role-new=/Users/raghunr/ws/athena-misc/src/AthenaBaseLpt/configuration/bin/ssh-with-role
+
 alias presto-cli='~/ws/presto/src/Aws157Presto/presto-cli/target/presto-cli-*-executable.jar'
 
  source $HOME/.cargo/env
@@ -124,3 +127,24 @@ alias emr-log-access='isen_cred 514483059857 EMRSupportLogAccess'
 ssh-mf-private() {
     ssh -i ~/asset-iad.pem hadoop@`aws ec2 describe-instances   --filters "Name=network-interface.private-dns-name,Values=$1" "Name=tag-key,Values=Name,Name=tag-value,Values=mf_asset" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].PublicIpAddress" --output text   | tr '\t' '\n'`
 }
+
+export PGHOST=dev-dsk-raghunr-1b-e3f7514d-pg.cbehw6ahzlbi.us-west-2.rds.amazonaws.com
+export PGPORT=8192
+export PGDATABASE=dca1usw2
+export PGUSER=cm_admin
+export PGPASSWORD=Cookiemonster1234
+
+export JAVA_HOME=/apollo/env/JavaSE8/jdk1.8/
+export PATH=${PATH}:${JAVA_HOME}/bin
+export JAVA_CMD=${JAVA_HOME}/bin/java
+
+export XEN_ROOT=~/padb
+export XEN_REL=$XEN_ROOT/rel
+export PGDATA=~/padb/data/pg
+export PATH=~/padb/rel/bin:$PATH
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+alias rdm="rdm --rp-nice-value 999 -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/ -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/c++/7.3.0 -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/c++/7.3.0/x86_64-pc-linux-gnu -I${HOME}/padb/build/.ec/rootfs/usr/local/include -I${HOME}/padb/build/.ec/rootfs/usr/include -I${HOME}/padb/build/.ec/rootfs/usr/include/libxml2"
+
+ 

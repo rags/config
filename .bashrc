@@ -111,3 +111,5 @@ export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 
 
 export PATH=$PATH:/var/lib/gems/1.8/bin
+
+export PATH=$HOME/.toolbox/bin:$PATH
