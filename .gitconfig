@@ -38,6 +38,7 @@
    sh = stash
    sl = !git stash && git pull && git stash pop
    cp = cherry-pick
+   ri = rebase -i
 [color]
    ui = auto
 [color "status"]

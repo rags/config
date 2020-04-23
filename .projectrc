@@ -147,5 +147,13 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 alias rdm="rdm --rp-nice-value 999 -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/ -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/c++/7.3.0 -I${HOME}/padb/build/.ec/rootfs/rds/bin/gcc-7.3.0/include/c++/7.3.0/x86_64-pc-linux-gnu -I${HOME}/padb/build/.ec/rootfs/usr/local/include -I${HOME}/padb/build/.ec/rootfs/usr/include -I${HOME}/padb/build/.ec/rootfs/usr/include/libxml2"
 
+
 export JAVA_HOME=/usr/java/jdk1.8.0_91
 source ~/dory/bin/impala-config.sh
+
+ alias cb='~/padb/bin/ecrun ccache -C && ~/padb/bin/ecrun ccache -z && ./make-build clean && ./make-build allclean && sudo rm -rf build && ./make-build -j  $(($(nproc) - 3)) install'
+
+alias cbdory='~/padb/bin/ecrun ccache -C && ~/padb/bin/ecrun ccache -z && ./make-build clean && ./make-build allclean && sudo rm -rf build && ./make-build -j  $(($(nproc) - 3)) install && ./make-build -j  $(($(nproc) - 3)) dev.db && ./make-build -j  $(($(nproc) - 3)) run && ~/padb/bin/ecrun run-tests localhost --clean-db --start && ~/padb/bin/ecrun run-tests localhost  pytest dory/test_custom_error_handling.py -k shorten'
+
+alias awsqa='aws --endpoint-url https://aws-cookie-monster-qa.amazon.com --no-verify-ssl'
+

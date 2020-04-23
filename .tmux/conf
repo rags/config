@@ -19,8 +19,8 @@ set-option -g status-bg blue
 set-option -g status-fg white
 set-option -g status on
 set-option -g status-keys emacs
-set-option -g prefix `
-set-option -g prefix2 C-b
+set-option -g prefix Escape
+set-option -g prefix2 `
 
 bind-key C-c run '~/bin/cp-to-clip'
 bind-key C-v run '~/bin/paste-frm-clip'
